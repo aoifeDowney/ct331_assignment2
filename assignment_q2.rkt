@@ -13,5 +13,17 @@
 
 (provide ins_beg)
 
+;(define (ins_beg el lst)
+  ;(display "Hello, I'm ins_beg!\n"))
+
+;Part A
 (define (ins_beg el lst)
-  (display "Hello, I'm ins_beg!\n"))
+  (cons el lst))
+
+;Part B
+(define (ins_end el lst)
+  (append lst(list el)))
+
+;Part C
+(define (count_top_level el lst)
+  (length (flatten lst)))
