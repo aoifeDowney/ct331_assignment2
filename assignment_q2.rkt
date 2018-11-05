@@ -36,3 +36,13 @@
           (else (count_instances (cdr lst) item))))
 
 
+;displaying the answers to the questions
+(display "The ins_beg function:\n")
+(ins_beg 'a '(b c d))
+
+(display "The ins_end function:\n")
+(ins_end '(a b) '(b c d))
+
+(display "The count_top_level function:\n")
+(count_top_level '(1 2 3 (4 5)))
+
