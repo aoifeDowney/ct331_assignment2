@@ -13,17 +13,26 @@
 
 (provide ins_beg)
 
-;(define (ins_beg el lst)
-  ;(display "Hello, I'm ins_beg!\n"))
-
 ;Part A
 (define (ins_beg el lst)
+  (display "Hello, I'm ins_beg!\n")
   (cons el lst))
+
 
 ;Part B
 (define (ins_end el lst)
   (append lst(list el)))
 
 ;Part C
-(define (count_top_level el lst)
-  (length (flatten lst)))
+(define (count_top_level lst)
+  (if (null? lst)
+      0
+      (+ 1 (count_top_level (cdr lst)))))
+
+;Part D
+(define (count_instances lst item)
+    (cond ((null? lst) 0)
+          ((= (car lst) item) (+ 1 (count_instances (cdr lst) item)))
+          (else (count_instances (cdr lst) item))))
+
+
