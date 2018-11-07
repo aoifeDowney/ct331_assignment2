@@ -1,17 +1,11 @@
 #lang racket
 
-;This is an example implementation of ins_beg,
-;It obviously doesn't do what it should, so you
-;can edit this function to get started.
-;
-;Please note the provide function is necessary
-;for the unit tests to work. Please include a
-;(provide) for each function you write in your
-;submitted assignment.
-;
-;You may delete these comments!
-
 (provide ins_beg)
+(provide ins_end)
+(provide count_top_level)
+(provide count_instances)
+(provide count_instances_tr)
+(provide count_instances_deep)
 
 ;Part A
 (define (ins_beg el lst)
@@ -36,6 +30,21 @@
           (else (count_instances (cdr lst) item))))
 
 ;Part E
+(define (count_instances_tr lst item)
+  (calculate_tr item lst 0))
+(define (calculate_tr item lst total)
+  (cond
+    [(empty? lst) total]
+    [(equal? item (car lst)) (calculate_tr item (cdr lst) (+ 1 total))]
+    [else (calculate_tr item (cdr lst) total)]))
+
+;Part F
+(define (count_instances_deep item lst)
+  (cond
+    [(null? lst) 0]
+    [(equal? (car lst) item) (+ 1 (count_instances_deep item (cdr lst)))]
+    [(list? (car lst)) (+ (count_instances_deep item (car lst)) (count_instances_deep item (cdr lst)))]
+    [else (count_instances_deep item (cdr lst))]))        
 
 
 
@@ -58,10 +67,11 @@
 
 ;Part E
 (display "The count_instances_tr function:\n")
+(count_instances_tr '(1 3 3 3 4)3)
 
-
-
-
+;Part F
+(display "The count_instances_deep function:\n")
+(count_instances_deep '3 '((1 2 3) 1 (3 1) 3 (2 1 3)))
 
 
 
